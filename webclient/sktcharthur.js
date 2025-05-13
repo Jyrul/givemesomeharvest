@@ -1,4 +1,3 @@
-// Variables globales pour le cercle rouge
 let redCircleX;
 let redCircleY;
 let redSpeed = 5; // Vitesse de déplacement
