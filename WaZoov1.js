@@ -44,11 +44,14 @@ function checkCollisionForFeatures(pX, pY, fX, fY) {
 function playersControler(x, y, speedX, speedY) {
   if (keyIsDown(UP_ARROW)) {
     players[0].y -= speedY;
-  } else if (keyIsDown(DOWN_ARROW)) {
+  }
+   if (keyIsDown(DOWN_ARROW)) {
     players[0].y += speedY;
-  }else if (keyIsDown(RIGHT_ARROW)) {
+  }
+   if (keyIsDown(RIGHT_ARROW)) {
     players[0].x += speedX;
-  } else if (keyIsDown(LEFT_ARROW)) {
+  }
+   if (keyIsDown(LEFT_ARROW)) {
     players[0].x -= speedX;
   }
 }
