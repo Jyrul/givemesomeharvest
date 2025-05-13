@@ -28,17 +28,19 @@ function draw() {
   players.forEach((item, index, players) => {
     playersControler(item.x, item.y, item.speedX, item.speedY);
   });
-
+  
   //Dessiner les bagages
   fill(100, 255, 255),
-  circle(features[0].x, features[0].y, features[0].size);
-
-  //Check si collision avec le bagage
-  checkCollisionForFeatures(players[0].x, players[0].y, features[0].x, features[0].y);
+  circle(features[index].x, features[index].y, features[index].size);
+    
+  let distanceForTake = players[0].size + features[index].size;
+  checkCollisionForFeatures(players[0].x, players[0].y, features[0].x, features[0].y, distanceForTake);
 }
 
-function checkCollisionForFeatures(pX, pY, fX, fY) {
-  
+function checkCollisionForFeatures(pX, pY, fX, fY, range) {
+  if (dist(pX, pY, fX, fY) < range) {
+    features[index].take = 0;
+  }
 }
 
 function playersControler(x, y, speedX, speedY) {
