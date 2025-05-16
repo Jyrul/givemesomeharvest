@@ -1,0 +1,99 @@
+<!DOCTYPE html>
+<html lang="en">
+  <head>
+    <meta charset="UTF-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+    <title>Hurry Up !!</title>
+    <style>
+      body {
+        font-family: system-ui, sans-serif !important;
+        font-weight: normal;
+      }
+
+      /* the styling of the dialog's veil */
+      ::backdrop {
+        background-color: black;
+        opacity: 0.5;
+      }
+    </style>
+  </head>
+  <body>
+    <script src="p5.min.js"></script>
+    
+    <script>
+      // you might need to change the address
+      const players = [];
+
+      let playerCount = 0;
+
+      const NO_TEAM = 0;
+      const RED = 1;
+      const BLUE = 2;
+
+      let ws = null;
+      connect();
+
+      function connect() {
+        ws = new WebSocket(`ws://${location.hostname}:8080`);
+
+        ws.addEventListener("close", (ev) => {
+          console.warn("connection closed");
+          connect(); // try to reconnect
+        });
+
+        ws.addEventListener("message", async (ev) => {
+          const [player, action, ...values] = (await ev.data.text()).split(",");
+
+          console.dir("message", {
+            player,
+            action,
+            values,
+          });
+
+          // if (!players[player]) {
+          //   players[player] = {
+          //     id: playerCount,
+          //     x: 0,
+          //     y: 0,
+          //     team: NO_TEAM,
+          //     banane: 1,
+          //     lastUpdate: Date.now(),
+          //   };
+          //   playerCount++;
+          // } else {
+          //   players[player].lastUpdate = Date.now();
+          // }
+
+          if (action == "join") {
+            playerCount++;
+
+            players[playerCount] = {
+              id: playerCount,
+              x: 0,
+              y: 0,
+              team: values[0],
+              banane: 1,
+              lastUpdate: Date.now(),
+              speed: 5,
+              baseSpeed: 5,
+              lastMoveDx: 0,
+              lastMoveDy: -1,
+              carryingSquareIndex: -1,
+              score: 0,
+            };
+
+            send(`identify,${playerCount},${values[1]}`);
+          }
+        });
+      }
+
+      function send(msg) {
+        if (ws) {
+          ws.send(`game,${msg}`);
+        }
+      }
+    </script>
+
+    <script src="beHereForTheGame.js"></script>
+  </body>
+</html>

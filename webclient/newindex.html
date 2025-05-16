@@ -3,7 +3,7 @@
   <head>
     <meta charset="UTF-8" />
     <meta name="viewport" content="width=device-width, initial-scale=1.0" />
-    <title>T-T-A-U-2-P</title>
+    <title>Document</title>
     <style>
       * {
         box-sizing: border-box;
@@ -39,33 +39,8 @@
         }
       }
 
-      #teamSelect {
-        height: 100vh;
-        display: flex;
-
-        > * {
-          flex: 1;
-        }
-
-        > *:nth-child(1) {
-          background-color: red;
-        }
-        > *:nth-child(2) {
-          background-color: blue;
-        }
-      }
-
       #button {
         padding: 15%;
-      }
-
-      #idDisplay {
-        position: fixed;
-        bottom: 0.5rem;
-        left: 2rem;
-        font-size: 8rem;
-        pointer-events: none;
-        user-select: none;
       }
 
       .centering {
@@ -74,51 +49,32 @@
       }
 
       .hidden {
-        display: none !important;
+        display: none;
       }
     </style>
   </head>
   <body>
     <main>
-      <article id="teamSelect">
-        <button onclick="join(RED)">join red</button>
-        <button onclick="join(BLUE)">join blue</button>
+      <article class="hidden">
+        <button>join red</button>
+        <button>join blue</button>
       </article>
-      <article id="controls" class="hidden">
+      <article id="controls">
         <div id="dpad" class="centering">
-          <img src="/images/controller/d_pad.png" alt="" draggable="false" />
+          <img src="d_pad.png" alt="" draggable="false" />
         </div>
-
         <div class="centering">
-          <img
-            id="button"
-            src="/images/controller/button.png"
-            alt=""
-            draggable="false"
-          />
+          <img id="button" src="button.png" alt="" draggable="false" />
         </div>
       </article>
     </main>
-    <p id="idDisplay"></p>
-
     <script>
       let ws;
       connect();
 
-      const RAND_TOKEN = Math.random().toString();
-      const NO_ID = -1;
-      const RED = 1;
-      const BLUE = 2;
-
-      let id = NO_ID;
-
       const dpad = document.querySelector("#dpad");
       const button = document.querySelector("#button");
 
-      let dpadDirection = {
-        x: 0,
-        y: 0,
-      };
       dpadTouches = [];
 
       button.addEventListener("pointerdown", () => {
@@ -140,15 +96,11 @@
         dpadTouches.splice(touchIndex, 1);
 
         if (dpadTouches.length == 0) {
-          dpadDirection = { x: 0, y: 0 };
-          send(`move,${dpadDirection.x},${dpadDirection.y}`);
+          send("no move");
         }
       }
 
-      dpad.addEventListener("pointermove", sendDpad);
-      dpad.addEventListener("pointerdown", sendDpad);
-
-      function sendDpad(ev) {
+      dpad.addEventListener("pointermove", (ev) => {
         // pas le plus vieil event en activite?
         if (ev.pointerId != dpadTouches[0]?.pointerId) {
           // alors on s'en fout
@@ -165,30 +117,19 @@
         const pointerAngle = angle(dpadCenter, { x: ev.x, y: ev.y });
 
         if (pointerAngle < 45 && pointerAngle > -45) {
-          if (dpadDirection.x != 1 || dpadDirection.y != 0) {
-            console.log("RIGHT");
-            dpadDirection = { x: 1, y: 0 };
-            send(`move,${dpadDirection.x},${dpadDirection.y}`);
-          }
+          console.log("right");
+          send("right");
         } else if (pointerAngle < -45 && pointerAngle > -135) {
-          if (dpadDirection.x != 0 || dpadDirection.y != 1) {
-            console.log("UP");
-            dpadDirection = { x: 0, y: 1 };
-            send(`move,${dpadDirection.x},${dpadDirection.y}`);
-          }
+          console.log("down");
+          send("down");
         } else if (pointerAngle > 45 && pointerAngle < 135) {
-          if (dpadDirection.x != 0 || dpadDirection.y != -1) {
-            console.log("DOWN");
-            dpadDirection = { x: 0, y: -1 };
-            send(`move,${dpadDirection.x},${dpadDirection.y}`);
-          }
+          console.log("up");
+          send("up");
         } else if (pointerAngle > 135 || pointerAngle < -135) {
-          if (dpadDirection.x != -1 || dpadDirection.y != 0) {
-            dpadDirection = { x: -1, y: 0 };
-            send(`move,${dpadDirection.x},${dpadDirection.y}`);
-          }
+          console.log("left");
+          send("left");
         }
-      }
+      });
 
       function angle(p1, p2) {
         return (Math.atan2(p2.y - p1.y, p2.x - p1.x) * -180) / Math.PI;
@@ -208,44 +149,20 @@
         });
 
         ws.addEventListener("message", async (ev) => {
-          const [who, action, ...values] = (await ev.data.text()).split(",");
-
-          console.log({ who, action, values });
-
-          if (who != "game") {
-            return;
-          }
-
-          if (id == NO_ID && action == "identify" && values[1] == RAND_TOKEN) {
-            id = values[0];
-            document.querySelector("#idDisplay").textContent = id;
-            document.querySelector("#teamSelect").classList.add("hidden");
-            document.querySelector("#controls").classList.remove("hidden");
-          }
+          const [player, action, ...values] = (await ev.data.text()).split(",");
 
           console.log("-----");
-          console.log(who);
+          console.log(player);
           console.log(action);
           console.log(values);
         });
       }
 
-      function join(team) {
-        console.log("JOIN");
-
-        if (id != NO_ID) {
-          return;
-        }
-
-        send(`join,${team},${RAND_TOKEN}`);
-      }
-
       function send(msg) {
-        console.log(`${id},${msg}`);
         if (ws) {
           // TODO adapter pour que ce soit pas la string "player"
           // mais le nom du joueur
-          ws.send(`${id},${msg}`);
+          ws.send("player," + msg);
         }
       }
     </script>
