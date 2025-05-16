@@ -10,6 +10,7 @@ const IDLE_TTL = 30;
 const ITEM_MAX_COUNT = 40;
 const ITEM_SPAWN_RATE = 3000;
 const SPRITE_SIZE_MODIFIER = 0.2;
+const ANIM_SIZE_MODIFIER = 2;
 
 let mapsIndex = 0;
 
@@ -98,66 +99,66 @@ function preload() {
             ),
           },
         },
-        // {
-        //   itemSprite: loadImage("images/Meubles/petit colis/Colis_Petit.png"),
-        //   carrierSprite: {
-        //     idle: loadImage(
-        //       "images/Demenageurs/petit colis/Demenageur_Breton_Petit_Coli_Bas.gif"
-        //     ),
-        //     up: loadImage(
-        //       "images/Demenageurs/petit colis/Demenageur_Breton_Petit_Coli_Haut.gif"
-        //     ),
-        //     down: loadImage(
-        //       "images/Demenageurs/petit colis/Demenageur_Breton_Petit_Coli_Bas.gif"
-        //     ),
-        //     left: loadImage(
-        //       "images/Demenageurs/petit colis/Demenageur_Breton_Petit_Coli_Gauche.gif"
-        //     ),
-        //     right: loadImage(
-        //       "images/Demenageurs/petit colis/Demenageur_Breton_Petit_Coli_Droite.gif"
-        //     ),
-        //   },
-        // },
-        // {
-        //   itemSprite: loadImage("images/Meubles/petit colis/Colis_Petit2.png"),
-        //   carrierSprite: {
-        //     idle: loadImage(
-        //       "images/Demenageurs/petit colis/Demenageur_Breton_Petit_Coli_Bas2.gif"
-        //     ),
-        //     up: loadImage(
-        //       "images/Demenageurs/petit colis/Demenageur_Breton_Petit_Coli_Haut2.gif"
-        //     ),
-        //     down: loadImage(
-        //       "images/Demenageurs/petit colis/Demenageur_Breton_Petit_Coli_Bas2.gif"
-        //     ),
-        //     left: loadImage(
-        //       "images/Demenageurs/petit colis/Demenageur_Breton_Petit_Coli_Gauche2.gif"
-        //     ),
-        //     right: loadImage(
-        //       "images/Demenageurs/petit colis/Demenageur_Breton_Petit_Coli_Droite2.gif"
-        //     ),
-        //   },
-        // },
-        // {
-        //   itemSprite: loadImage("images/Meubles/petit colis/Pouf.png"),
-        //   carrierSprite: {
-        //     idle: loadImage(
-        //       "images/Demenageurs/petit colis/Demenageur_Breton_Pouf_Bas.gif"
-        //     ),
-        //     up: loadImage(
-        //       "images/Demenageurs/petit colis/Demenageur_Breton_Pouf_Haut.gif"
-        //     ),
-        //     down: loadImage(
-        //       "images/Demenageurs/petit colis/Demenageur_Breton_Pouf_Bas.gif"
-        //     ),
-        //     left: loadImage(
-        //       "images/Demenageurs/petit colis/Demenageur_Breton_Pouf_Gauche.gif"
-        //     ),
-        //     right: loadImage(
-        //       "images/Demenageurs/petit colis/Demenageur_Breton_Pouf_Droite.gif"
-        //     ),
-        //   },
-        // },
+        {
+          itemSprite: loadImage("images/Meubles/petit colis/Colis_Petit.png"),
+          carrierSprite: {
+            idle: loadImage(
+              "images/Demenageurs/petit colis/Demenageur_Breton_Petit_Coli_Bas.gif"
+            ),
+            up: loadImage(
+              "images/Demenageurs/petit colis/Demenageur_Breton_Petit_Coli_Haut.gif"
+            ),
+            down: loadImage(
+              "images/Demenageurs/petit colis/Demenageur_Breton_Petit_Coli_Bas.gif"
+            ),
+            left: loadImage(
+              "images/Demenageurs/petit colis/Demenageur_Breton_Petit_Coli_Gauche.gif"
+            ),
+            right: loadImage(
+              "images/Demenageurs/petit colis/Demenageur_Breton_Petit_Coli_Droite.gif"
+            ),
+          },
+        },
+        {
+          itemSprite: loadImage("images/Meubles/petit colis/Colis_Petit2.png"),
+          carrierSprite: {
+            idle: loadImage(
+              "images/Demenageurs/petit colis/Demenageur_Breton_Petit_Coli_Bas2.gif"
+            ),
+            up: loadImage(
+              "images/Demenageurs/petit colis/Demenageur_Breton_Petit_Coli_Haut2.gif"
+            ),
+            down: loadImage(
+              "images/Demenageurs/petit colis/Demenageur_Breton_Petit_Coli_Bas2.gif"
+            ),
+            left: loadImage(
+              "images/Demenageurs/petit colis/Demenageur_Breton_Petit_Coli_Gauche2.gif"
+            ),
+            right: loadImage(
+              "images/Demenageurs/petit colis/Demenageur_Breton_Petit_Coli_Droite2.gif"
+            ),
+          },
+        },
+        {
+          itemSprite: loadImage("images/Meubles/petit colis/Pouf.png"),
+          carrierSprite: {
+            idle: loadImage(
+              "images/Demenageurs/petit colis/Demenageur_Breton_Pouf_Bas.gif"
+            ),
+            up: loadImage(
+              "images/Demenageurs/petit colis/Demenageur_Breton_Pouf_Haut.gif"
+            ),
+            down: loadImage(
+              "images/Demenageurs/petit colis/Demenageur_Breton_Pouf_Bas.gif"
+            ),
+            left: loadImage(
+              "images/Demenageurs/petit colis/Demenageur_Breton_Pouf_Gauche.gif"
+            ),
+            right: loadImage(
+              "images/Demenageurs/petit colis/Demenageur_Breton_Pouf_Droite.gif"
+            ),
+          },
+        },
       ],
       [
         {
@@ -180,46 +181,46 @@ function preload() {
             ),
           },
         },
-        //   {
-        //     itemSprite: loadImage("images/Meubles/moyen colis/Colis_Moyen2.png"),
-        //     carrierSprite: {
-        //       idle: loadImage(
-        //         "images/Demenageurs/moyen colis/Demenageur_Breton_Coli_Moyen_Bas2.gif"
-        //       ),
-        //       up: loadImage(
-        //         "images/Demenageurs/moyen colis/Demenageur_Breton_Coli_Moyen_Haut2.gif"
-        //       ),
-        //       down: loadImage(
-        //         "images/Demenageurs/moyen colis/Demenageur_Breton_Coli_Moyen_Bas2.gif"
-        //       ),
-        //       left: loadImage(
-        //         "images/Demenageurs/moyen colis/Demenageur_Breton_Coli_Moyen_Gauche2.gif"
-        //       ),
-        //       right: loadImage(
-        //         "images/Demenageurs/moyen colis/Demenageur_Breton_Coli_Moyen_Droite2.gif"
-        //       ),
-        //     },
-        //   },
-        //   {
-        //     itemSprite: loadImage("images/Meubles/moyen colis/Fragile.png"),
-        //     carrierSprite: {
-        //       idle: loadImage(
-        //         "images/Demenageurs/moyen colis/Demenageur_Breton_Fragile_Bas.gif"
-        //       ),
-        //       up: loadImage(
-        //         "images/Demenageurs/moyen colis/Demenageur_Breton_Fragile_Haut.gif"
-        //       ),
-        //       down: loadImage(
-        //         "images/Demenageurs/moyen colis/Demenageur_Breton_Fragile_Bas.gif"
-        //       ),
-        //       left: loadImage(
-        //         "images/Demenageurs/moyen colis/Demenageur_Breton_Fragile_Gauche.gif"
-        //       ),
-        //       right: loadImage(
-        //         "images/Demenageurs/moyen colis/Demenageur_Breton_Fragile_Droite.gif"
-        //       ),
-        //     },
-        //   },
+        {
+          itemSprite: loadImage("images/Meubles/moyen colis/Colis_Moyen2.png"),
+          carrierSprite: {
+            idle: loadImage(
+              "images/Demenageurs/moyen colis/Demenageur_Breton_Coli_Moyen_Bas2.gif"
+            ),
+            up: loadImage(
+              "images/Demenageurs/moyen colis/Demenageur_Breton_Coli_Moyen_Haut2.gif"
+            ),
+            down: loadImage(
+              "images/Demenageurs/moyen colis/Demenageur_Breton_Coli_Moyen_Bas2.gif"
+            ),
+            left: loadImage(
+              "images/Demenageurs/moyen colis/Demenageur_Breton_Coli_Moyen_Gauche2.gif"
+            ),
+            right: loadImage(
+              "images/Demenageurs/moyen colis/Demenageur_Breton_Coli_Moyen_Droite2.gif"
+            ),
+          },
+        },
+        {
+          itemSprite: loadImage("images/Meubles/moyen colis/Fragile.png"),
+          carrierSprite: {
+            idle: loadImage(
+              "images/Demenageurs/moyen colis/Demenageur_Breton_Fragile_Bas.gif"
+            ),
+            up: loadImage(
+              "images/Demenageurs/moyen colis/Demenageur_Breton_Fragile_Haut.gif"
+            ),
+            down: loadImage(
+              "images/Demenageurs/moyen colis/Demenageur_Breton_Fragile_Bas.gif"
+            ),
+            left: loadImage(
+              "images/Demenageurs/moyen colis/Demenageur_Breton_Fragile_Gauche.gif"
+            ),
+            right: loadImage(
+              "images/Demenageurs/moyen colis/Demenageur_Breton_Fragile_Droite.gif"
+            ),
+          },
+        },
       ],
       [
         {
@@ -242,66 +243,66 @@ function preload() {
             ),
           },
         },
-        // {
-        //   itemSprite: loadImage("images/Meubles/grand colis/Lave_Linge.png"),
-        //   carrierSprite: {
-        //     idle: loadImage(
-        //       "images/Demenageurs/grand colis/Demenageur_Breton_Lave_Linge_Bas.gif"
-        //     ),
-        //     up: loadImage(
-        //       "images/Demenageurs/grand colis/Demenageur_Breton_Lave_Linge_Haut.gif"
-        //     ),
-        //     down: loadImage(
-        //       "images/Demenageurs/grand colis/Demenageur_Breton_Lave_Linge_Bas.gif"
-        //     ),
-        //     left: loadImage(
-        //       "images/Demenageurs/grand colis/Demenageur_Breton_Lave_Linge_Gauche.gif"
-        //     ),
-        //     right: loadImage(
-        //       "images/Demenageurs/grand colis/Demenageur_Breton_Lave_Linge_Droit.gif"
-        //     ),
-        //   },
-        // },
-        // {
-        //   itemSprite: loadImage("images/Meubles/grand colis/Plante.png"),
-        //   carrierSprite: {
-        //     idle: loadImage(
-        //       "images/Demenageurs/grand colis/Demenageur_Breton_Plante_Bas.gif"
-        //     ),
-        //     up: loadImage(
-        //       "images/Demenageurs/grand colis/Demenageur_Breton_Plante_Haut.gif"
-        //     ),
-        //     down: loadImage(
-        //       "images/Demenageurs/grand colis/Demenageur_Breton_Plante_Bas.gif"
-        //     ),
-        //     left: loadImage(
-        //       "images/Demenageurs/grand colis/Demenageur_Breton_Plante_Gauche.gif"
-        //     ),
-        //     right: loadImage(
-        //       "images/Demenageurs/grand colis/Demenageur_Breton_Plante_Droite.gif"
-        //     ),
-        //   },
-        // },
-        // {
-        //   itemSprite: loadImage("images/Meubles/grand colis/Table.png"),
-        //   carrierSprite: {
-        //     idle: loadImage(
-        //       "images/Demenageurs/grand colis/Demenageur_Breton_Table_Bas.gif"
-        //     ),
-        //     up: loadImage(
-        //       "images/Demenageurs/grand colis/Demenageur_Breton_Table_Haut.gif"
-        //     ),
-        //     down: loadImage(
-        //       "images/Demenageurs/grand colis/Demenageur_Breton_Table_Bas.gif"
-        //     ),
-        //     left: loadImage(
-        //       "images/Demenageurs/grand colis/Demenageur_Breton_Table_Gauche.gif"
-        //     ),
-        //     right: loadImage(
-        //       "images/Demenageurs/grand colis/Demenageur_Breton_Table_Droit.gif"
-        //     ),
-        //   },
-        // },
+        {
+          itemSprite: loadImage("images/Meubles/grand colis/Lave_Linge.png"),
+          carrierSprite: {
+            idle: loadImage(
+              "images/Demenageurs/grand colis/Demenageur_Breton_Lave_Linge_Bas.gif"
+            ),
+            up: loadImage(
+              "images/Demenageurs/grand colis/Demenageur_Breton_Lave_Linge_Haut.gif"
+            ),
+            down: loadImage(
+              "images/Demenageurs/grand colis/Demenageur_Breton_Lave_Linge_Bas.gif"
+            ),
+            left: loadImage(
+              "images/Demenageurs/grand colis/Demenageur_Breton_Lave_Linge_Gauche.gif"
+            ),
+            right: loadImage(
+              "images/Demenageurs/grand colis/Demenageur_Breton_Lave_Linge_Droit.gif"
+            ),
+          },
+        },
+        {
+          itemSprite: loadImage("images/Meubles/grand colis/Plante.png"),
+          carrierSprite: {
+            idle: loadImage(
+              "images/Demenageurs/grand colis/Demenageur_Breton_Plante_Bas.gif"
+            ),
+            up: loadImage(
+              "images/Demenageurs/grand colis/Demenageur_Breton_Plante_Haut.gif"
+            ),
+            down: loadImage(
+              "images/Demenageurs/grand colis/Demenageur_Breton_Plante_Bas.gif"
+            ),
+            left: loadImage(
+              "images/Demenageurs/grand colis/Demenageur_Breton_Plante_Gauche.gif"
+            ),
+            right: loadImage(
+              "images/Demenageurs/grand colis/Demenageur_Breton_Plante_Droite.gif"
+            ),
+          },
+        },
+        {
+          itemSprite: loadImage("images/Meubles/grand colis/Table.png"),
+          carrierSprite: {
+            idle: loadImage(
+              "images/Demenageurs/grand colis/Demenageur_Breton_Table_Bas.gif"
+            ),
+            up: loadImage(
+              "images/Demenageurs/grand colis/Demenageur_Breton_Table_Haut.gif"
+            ),
+            down: loadImage(
+              "images/Demenageurs/grand colis/Demenageur_Breton_Table_Bas.gif"
+            ),
+            left: loadImage(
+              "images/Demenageurs/grand colis/Demenageur_Breton_Table_Gauche.gif"
+            ),
+            right: loadImage(
+              "images/Demenageurs/grand colis/Demenageur_Breton_Table_Droit.gif"
+            ),
+          },
+        },
       ],
     ],
   };
@@ -338,7 +339,7 @@ function setup() {
 }
 
 function draw() {
-  console.log(mouseX / width, mouseY / height);
+  // console.log(mouseX / width, mouseY / height);
 
   imageMode(CORNER);
   image(maps[mapsIndex], 0, 0, width, height);
@@ -391,6 +392,8 @@ function draw() {
         }
 
         item.active = false;
+        item.x = -1;
+        item.y = -1;
       }
     });
   });
@@ -436,8 +439,8 @@ function draw() {
             player.carryItem.sprite.carrierSprite.idle,
             x,
             y,
-            player.size,
-            player.size
+            player.size * ANIM_SIZE_MODIFIER,
+            player.size * ANIM_SIZE_MODIFIER
           );
           break;
         case player.vx > 0 && player.vy == 0:
@@ -445,8 +448,8 @@ function draw() {
             player.carryItem.sprite.carrierSprite.right,
             x,
             y,
-            player.size,
-            player.size
+            player.size * ANIM_SIZE_MODIFIER,
+            player.size * ANIM_SIZE_MODIFIER
           );
           break;
         case player.vx < 0 && player.vy == 0:
@@ -454,8 +457,8 @@ function draw() {
             player.carryItem.sprite.carrierSprite.left,
             x,
             y,
-            player.size,
-            player.size
+            player.size * ANIM_SIZE_MODIFIER,
+            player.size * ANIM_SIZE_MODIFIER
           );
           break;
         case player.vx == 0 && player.vy < 0:
@@ -463,8 +466,8 @@ function draw() {
             player.carryItem.sprite.carrierSprite.up,
             x,
             y,
-            player.size,
-            player.size
+            player.size * ANIM_SIZE_MODIFIER,
+            player.size * ANIM_SIZE_MODIFIER
           );
           break;
         case player.vx == 0 && player.vy > 0:
@@ -472,8 +475,8 @@ function draw() {
             player.carryItem.sprite.carrierSprite.down,
             x,
             y,
-            player.size,
-            player.size
+            player.size * ANIM_SIZE_MODIFIER,
+            player.size * ANIM_SIZE_MODIFIER
           );
           break;
       }
@@ -528,7 +531,7 @@ function connect() {
   ws.addEventListener("message", async (ev) => {
     const [who, action, ...values] = (await ev.data.text()).split(",");
 
-    console.log({ who, action, values });
+    // console.log({ who, action, values });
 
     if (who == "game") {
       return;
@@ -568,10 +571,13 @@ function connect() {
         break;
       case "dropItem":
         const player = players[who];
+        const item = player.carryItem;
+        // console.log({ player, item });
         if (player.carryItem) {
           player.carryItem.x = player.x;
           player.carryItem.y = player.y;
-          player.carryItem.held = false;
+          player.carryItem = null;
+          // console.log({ player, item });
         }
         break;
     }
